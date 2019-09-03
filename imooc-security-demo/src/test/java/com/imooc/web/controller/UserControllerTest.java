@@ -15,6 +15,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.Date;
+
 /**
  *
  *@ClassName     ：UserControllerTest
@@ -74,4 +76,16 @@ public class UserControllerTest {
 
     }
 
+    @Test
+    public void whenCreateSuccess() throws Exception {
+        Date date = new Date();
+        String context = "{\"userName\":\"xiaowei\",\"passWord\":null,\"sex\":null,\"birthday\":\""+date.getTime()+"\"}" ;
+        String result = mockMvc.perform(MockMvcRequestBuilders.post("/user")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(context))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value("1"))
+                .andReturn().getResponse().getContentAsString();
+        System.out.println(result);
+    }
 }
