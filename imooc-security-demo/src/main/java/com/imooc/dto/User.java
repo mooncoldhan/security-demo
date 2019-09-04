@@ -1,8 +1,10 @@
 package com.imooc.dto;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.imooc.validatior.MyConstraint;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -25,6 +27,7 @@ public class User implements Serializable {
     private String id;
 
     @JsonView(UserSimpleView.class) //声明当前视图展示该字段
+    @MyConstraint(message = "这是一个测试")
     private String userName;
 
     @JsonView(UserDetailView.class)
@@ -34,6 +37,7 @@ public class User implements Serializable {
     @JsonView({UserSimpleView.class,UserDetailView.class})
     private String sex;
 
+    @Past(message = "生日日期必须小于当前日期") //表示传参值必须在当前时间前，message值为BindingResult的DefaultMessage
     private Date birthday;
 
     public String getId() {

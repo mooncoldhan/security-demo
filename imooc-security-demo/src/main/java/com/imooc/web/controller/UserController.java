@@ -6,14 +6,15 @@ import com.imooc.dto.UserQuery;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -74,4 +75,30 @@ public class UserController {
         user.setUserName("xiaowei");
         return user;
     }
+
+    @DeleteMapping("/{id:\\d+}")
+    public void delete(@PathVariable String id){
+        System.out.println(id);
+    }
+
+    @PutMapping("/{id:\\d+}")
+    public User update(@Validated @RequestBody User user, BindingResult error){
+
+        //判断error是否有值，有返回 ture
+        if(error.hasErrors()){
+            error.getAllErrors().stream().forEach(objectError -> {
+                FieldError fieldError = (FieldError) objectError;
+                System.out.println(fieldError.getField()+"  " + fieldError.getDefaultMessage());
+            });
+        }
+
+        System.out.println(user.getUserName());
+        System.out.println(user.getPassWord());
+        System.out.println(user.getBirthday());
+        user.setId("1");
+        return user;
+
+    }
+
+
 }
