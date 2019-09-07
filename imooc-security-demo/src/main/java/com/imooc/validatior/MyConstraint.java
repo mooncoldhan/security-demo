@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
  * @Description: TODO
  * @date 2019/9/413:53
  */
-@Target({ElementType.METHOD,ElementType.FIELD}) //表示该注解可用于方法或类上
+@Target({ElementType.METHOD,ElementType.TYPE}) //表示该注解可用于方法或类上
 @Retention(RetentionPolicy.RUNTIME) //表明该注解是运行时注解
 @Constraint(validatedBy = MyConstraintValidatior.class)  //表示当前注解需要用哪个类来表示
 public @interface MyConstraint {

@@ -94,7 +94,7 @@ public class UserControllerTest {
     public void whenUpdateSuccess() throws Exception {
         Date date = new Date(LocalDateTime.now().plusYears(1).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
         String context = "{\"id\":\"1\",\"userName\":\"xiaowei\",\"passWord\":null,\"sex\":null,\"birthday\":\""+date.getTime()+"\"}" ;
-        String result = mockMvc.perform(MockMvcRequestBuilders.put("/user/1")
+        String result = mockMvc. perform(MockMvcRequestBuilders.put("/user/1")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(context))
                 .andExpect(MockMvcResultMatchers.status().isOk())

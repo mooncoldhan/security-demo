@@ -16,18 +16,16 @@ import java.util.Date;
  *@date       : 2019/8/22 20:38
  *@version   : V1.0
  */
-
+@MyConstraint(message = "这是一个测试")
 public class User implements Serializable {
 
     //创建视图
     public interface UserSimpleView {};
     public interface UserDetailView extends UserSimpleView {};
 
-
     private String id;
 
     @JsonView(UserSimpleView.class) //声明当前视图展示该字段
-    @MyConstraint(message = "这是一个测试")
     private String userName;
 
     @JsonView(UserDetailView.class)
