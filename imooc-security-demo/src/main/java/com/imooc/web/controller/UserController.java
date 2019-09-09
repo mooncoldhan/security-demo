@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ import java.util.List;
  *@version   : V1.0
  */
 @RestController
-@RequestMapping("/user") //父路径，此类下所有路径前缀
+ //父路径，此类下所有路径前缀
 public class UserController {
 
     //@RequestParam() 修饰该值必须传递, name 修饰传参名称, required 为false 可以不传参数 ，defaultValue 传参为空使用默认值

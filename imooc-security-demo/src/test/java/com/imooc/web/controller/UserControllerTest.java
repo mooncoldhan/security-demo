@@ -110,4 +110,14 @@ public class UserControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
     }
+
+
+    @Test
+    public void getWeatherByCityCode() throws Exception {
+        String result = mockMvc.perform(MockMvcRequestBuilders.get("/weather/getWeather/2002")
+                .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(MockMvcResultMatchers.status().isOk()) //isOk() 状态码为200
+                .andReturn().getResponse().getContentAsString();
+        System.out.println(result);
+    }
 }
